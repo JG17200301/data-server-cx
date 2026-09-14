@@ -9,11 +9,7 @@ const CONFIG = {
   // Debe ser exactamente el mismo valor que CONFIG.APP_TOKEN
   // en apps-script/Code.gs. Sirve como llave simple para que
   // no cualquiera pueda usar el endpoint si adivina la URL.
-  APP_TOKEN: "claro-asistencia-2026",
-
-  // Milisegundos de espera después de dejar de escribir el
-  // código, antes de buscarlo en la hoja.
-  DEBOUNCE_MS: 500
+  APP_TOKEN: "claro-asistencia-2026"
 };
 
 /* =========================================================
@@ -23,13 +19,13 @@ const form = document.getElementById("form-asistencia");
 const inputCodigo = document.getElementById("input-codigo");
 const inputNombre = document.getElementById("input-nombre");
 const hintCodigo = document.getElementById("hint-codigo");
+const btnValidar = document.getElementById("btn-validar");
 const mesaBox = document.getElementById("mesa-box");
 const mesaValor = document.getElementById("mesa-valor");
 const btnRegistrar = document.getElementById("btn-registrar");
 const mensaje = document.getElementById("mensaje");
 
 let empleadoActual = null; // { codigo, nombre, mesa, zona, ocupacion }
-let debounceTimer = null;
 
 /* =========================================================
    Utilidades de UI
@@ -70,11 +66,13 @@ function resetFormularioCompleto() {
 async function buscarEmpleado(codigo) {
   if (!codigo) {
     resetEmpleado();
-    mostrarHint("", "");
+    mostrarHint("Escribe un código antes de validar", "error");
     return;
   }
 
   mostrarHint("Buscando...", "");
+  btnValidar.disabled = true;
+  btnValidar.textContent = "Validando...";
 
   try {
     const url =
@@ -108,32 +106,32 @@ async function buscarEmpleado(codigo) {
     resetEmpleado();
     mostrarHint("No se pudo conectar con la hoja. Intenta de nuevo.", "error");
     console.error(err);
+  } finally {
+    btnValidar.disabled = false;
+    btnValidar.textContent = "Validar";
   }
 }
 
 /* =========================================================
-   Eventos de escritura del código (con debounce)
+   Eventos del código: escribir limpia la validación anterior;
+   la búsqueda solo se dispara con el botón "Validar" o Enter.
    ========================================================= */
 inputCodigo.addEventListener("input", () => {
   limpiarMensaje();
-  clearTimeout(debounceTimer);
-  const codigo = inputCodigo.value.trim();
-
-  if (!codigo) {
-    resetEmpleado();
-    mostrarHint("", "");
-    return;
-  }
-
-  debounceTimer = setTimeout(() => buscarEmpleado(codigo), CONFIG.DEBOUNCE_MS);
+  resetEmpleado();
+  mostrarHint("", "");
 });
 
 inputCodigo.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
-    clearTimeout(debounceTimer);
     buscarEmpleado(inputCodigo.value.trim());
   }
+});
+
+btnValidar.addEventListener("click", () => {
+  limpiarMensaje();
+  buscarEmpleado(inputCodigo.value.trim());
 });
 
 /* =========================================================
