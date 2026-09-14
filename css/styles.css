@@ -1,0 +1,247 @@
+/* =========================================================
+   Tema visual estilo Claro (rojo/blanco).
+   Los colores son una aproximación a la marca; si tienes la
+   guía de marca oficial, ajusta las variables de abajo.
+   ========================================================= */
+
+:root {
+  --claro-rojo: #e4002b;
+  --claro-rojo-oscuro: #b4001f;
+  --claro-negro: #1a1a1a;
+  --claro-gris: #6b6b6b;
+  --claro-gris-claro: #f4f4f4;
+  --claro-borde: #e2e2e2;
+  --claro-verde: #1e8e3e;
+  --claro-error: #c62828;
+  --radio: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--claro-gris-claro);
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--claro-negro);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Encabezado ---------- */
+
+.topbar {
+  background: var(--claro-rojo);
+  color: #fff;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 34px;
+  width: auto;
+}
+
+.logo-fallback {
+  align-items: center;
+  gap: 6px;
+}
+
+.logo-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  display: inline-block;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.topbar-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  padding-left: 16px;
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Contenedor ---------- */
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: var(--radio);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 28px 24px;
+  border-top: 4px solid var(--claro-rojo);
+}
+
+/* ---------- Formulario ---------- */
+
+.field {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--claro-gris);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 1.5px solid var(--claro-borde);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+input[type="text"]:focus {
+  border-color: var(--claro-rojo);
+}
+
+input[readonly] {
+  background: var(--claro-gris-claro);
+  color: var(--claro-negro);
+}
+
+.hint {
+  display: block;
+  min-height: 16px;
+  font-size: 12.5px;
+  margin-top: 4px;
+}
+
+.hint.error {
+  color: var(--claro-error);
+}
+
+.hint.ok {
+  color: var(--claro-verde);
+}
+
+/* ---------- Caja de mesa asignada ---------- */
+
+.mesa-box {
+  background: linear-gradient(135deg, var(--claro-rojo), var(--claro-rojo-oscuro));
+  color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mesa-label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+}
+
+.mesa-valor {
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* ---------- Botón ---------- */
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--claro-rojo);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--claro-rojo-oscuro);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.btn-primary:disabled {
+  background: #d6a6ae;
+  cursor: not-allowed;
+}
+
+/* ---------- Mensajes ---------- */
+
+.mensaje {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  display: none;
+}
+
+.mensaje.ok {
+  display: block;
+  background: #e6f4ea;
+  color: var(--claro-verde);
+  border: 1px solid #b7e1c1;
+}
+
+.mensaje.error {
+  display: block;
+  background: #fdecea;
+  color: var(--claro-error);
+  border: 1px solid #f5c6c2;
+}
+
+.footer-note {
+  color: var(--claro-gris);
+  font-size: 12.5px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .topbar-title {
+    font-size: 15px;
+  }
+  .card {
+    padding: 22px 18px;
+  }
+}

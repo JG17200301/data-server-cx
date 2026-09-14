@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de Asistencia | Claro</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="logo-wrap">
+      <img src="assets/logo-claro.png" alt="Claro" class="logo-img" onerror="this.style.display='none'; document.querySelector('.logo-fallback').style.display='flex';">
+      <div class="logo-fallback" style="display:none;">
+        <span class="logo-dot"></span>
+        <span class="logo-text">claro</span>
+      </div>
+    </div>
+    <h1 class="topbar-title">Registro de Asistencia</h1>
+  </header>
+
+  <main class="container">
+    <section class="card">
+
+      <form id="form-asistencia" autocomplete="off">
+
+        <div class="field">
+          <label for="input-codigo">Código de empleado</label>
+          <input
+            type="text"
+            id="input-codigo"
+            name="codigo"
+            placeholder="Ej. 10245"
+            inputmode="numeric"
+            autofocus
+          >
+          <span class="hint" id="hint-codigo">&nbsp;</span>
+        </div>
+
+        <div class="field">
+          <label for="input-nombre">Nombre del empleado</label>
+          <input
+            type="text"
+            id="input-nombre"
+            name="nombre"
+            placeholder="Se completa automáticamente"
+            readonly
+          >
+        </div>
+
+        <div class="mesa-box" id="mesa-box" hidden>
+          <span class="mesa-label">Mesa asignada</span>
+          <span class="mesa-valor" id="mesa-valor">—</span>
+        </div>
+
+        <button type="submit" id="btn-registrar" class="btn-primary" disabled>
+          Registrar asistencia
+        </button>
+
+        <div class="mensaje" id="mensaje" role="status" aria-live="polite"></div>
+
+      </form>
+
+    </section>
+
+    <p class="footer-note">Sistema interno de control de asistencia · Claro</p>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
