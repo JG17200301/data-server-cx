@@ -205,6 +205,34 @@ input[readonly] {
   cursor: not-allowed;
 }
 
+.btn-secondary {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--claro-rojo);
+  background: #fff;
+  border: 1.5px solid var(--claro-rojo);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 18px;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.05s ease;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #fdecea;
+}
+
+.btn-secondary:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.btn-secondary:disabled {
+  color: var(--claro-gris);
+  border-color: var(--claro-borde);
+  cursor: not-allowed;
+}
+
 /* ---------- Mensajes ---------- */
 
 .mensaje {
