@@ -17,7 +17,49 @@
       </div>
     </div>
     <h1 class="topbar-title">Registro de Asistencia</h1>
+    <button type="button" id="btn-ver-registrados" class="btn-topbar">
+      Ver registrados
+    </button>
   </header>
+
+  <!-- Panel: empleados ya registrados hoy -->
+  <div class="overlay" id="overlay-registrados" hidden>
+    <div class="panel" role="dialog" aria-modal="true" aria-labelledby="titulo-registrados">
+      <div class="panel-header">
+        <h2 id="titulo-registrados">Registrados hoy</h2>
+        <button type="button" id="btn-cerrar-registrados" class="btn-cerrar" aria-label="Cerrar">&times;</button>
+      </div>
+
+      <div class="panel-toolbar">
+        <input
+          type="text"
+          id="input-buscar-registrados"
+          placeholder="Buscar por nombre, código o mesa..."
+          autocomplete="off"
+        >
+        <button type="button" id="btn-actualizar-registrados" class="btn-secondary btn-actualizar">
+          Actualizar
+        </button>
+      </div>
+
+      <p class="panel-contador" id="contador-registrados">&nbsp;</p>
+
+      <div class="panel-lista" id="lista-registrados">
+        <p class="panel-estado" id="estado-registrados">Cargando...</p>
+        <table class="tabla-registrados" id="tabla-registrados" hidden>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Código</th>
+              <th>Mesa</th>
+              <th>Hora</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo-tabla-registrados"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
   <main class="container">
     <section class="card">
